@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestionar Modelos GGUF</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app app-modelos">
+
+    <main class="panel panel-central panel-modelos">
+      <header class="encabezado-chat">
+        <div>
+          <h1>Gestionar Modelos</h1>
+          <p class="subtitulo">Busca modelos .gguf en Hugging Face y descárgalos a tu carpeta local.</p>
+        </div>
+        <a href="index.html" class="enlace-modelos">← Volver al chat</a>
+      </header>
+
+      <form id="formulario-busqueda" class="formulario-busqueda">
+        <input id="campo-busqueda" type="text" placeholder="Buscar modelo, ej: phi-3, mistral, llama-3..." autocomplete="off" required>
+        <button type="submit" class="boton-enviar">Buscar</button>
+      </form>
+
+      <section>
+        <h2 class="titulo-seccion">Modelos instalados</h2>
+        <div id="lista-instalados" class="lista-modelos"></div>
+      </section>
+
+      <section>
+        <div class="encabezado-seccion">
+          <h2 class="titulo-seccion">Resultados de búsqueda</h2>
+          <div class="grupo-botones-ordenar">
+            <button id="boton-ordenar-tamano" class="boton-ordenar" style="display:none;">Ordenar por tamaño ↑</button>
+            <button id="boton-ordenar-parametros" class="boton-ordenar" style="display:none;">Ordenar por parámetros ↑</button>
+          </div>
+        </div>
+        <div id="lista-resultados" class="lista-modelos"></div>
+      </section>
+    </main>
+
+  </div>
+  <script src="modelos.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat GGUF Local</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Columna izquierda: historial de conversaciones -->
+    <aside class="panel panel-izquierdo">
+      <div class="encabezado-panel">
+        <h2>Chat History</h2>
+        <button id="boton-nuevo-chat" class="boton-nuevo-chat">New Chat</button>
+      </div>
+      <p class="subtitulo">Recent conversations</p>
+      <div id="lista-conversaciones" class="lista-conversaciones"></div>
+
+      <a href="modelos.html" class="enlace-modelos">⬇ Gestionar Modelos</a>
+    </aside>
+
+    <!-- Columna central: la conversación activa -->
+    <main class="panel panel-central">
+      <header class="encabezado-chat">
+        <div>
+          <h1 id="titulo-conversacion">Nueva conversación</h1>
+          <p class="subtitulo">Ventana de contexto: <span id="texto-contexto">1024 tokens</span></p>
+        </div>
+        <div class="dropdown-modelo" id="dropdown-modelo">
+          <button type="button" id="boton-dropdown-modelo" class="boton-dropdown-modelo">
+            <span id="texto-modelo-elegido">Cargando...</span>
+            <span class="flecha-dropdown">▾</span>
+          </button>
+          <div id="lista-dropdown-modelo" class="lista-dropdown-modelo"></div>
+        </div>
+      </header>
+
+      <div id="ventana-mensajes" class="ventana-mensajes"></div>
+
+      <form id="formulario-chat" class="formulario-chat">
+        <input id="campo-mensaje" type="text" placeholder="Type your message..." autocomplete="off" required>
+        <button type="submit" class="boton-enviar" aria-label="Enviar">➤</button>
+      </form>
+    </main>
+
+    <!-- Columna derecha: parámetros del modelo -->
+    <aside class="panel panel-derecho">
+      <div class="encabezado-panel">
+        <h2>Model Settings</h2>
+      </div>
+
+      <label class="etiqueta">Temperature</label>
+      <div class="control-slider">
+        <input id="control-temperatura" type="range" min="0" max="1" step="0.1" value="0.7">
+        <span id="valor-temperatura" class="valor-slider">0.7</span>
+      </div>
+      <div class="rango-min-max"><span>0.0</span><span>1.0</span></div>
+
+      <label class="etiqueta">Top-K</label>
+      <div class="control-slider">
+        <input id="control-topk" type="range" min="0" max="100" step="1" value="50">
+        <span id="valor-topk" class="valor-slider">50</span>
+      </div>
+      <div class="rango-min-max"><span>0</span><span>100</span></div>
+
+      <label class="etiqueta">Top-P</label>
+      <div class="control-slider">
+        <input id="control-topp" type="range" min="0" max="1" step="0.1" value="0.9">
+        <span id="valor-topp" class="valor-slider">0.9</span>
+      </div>
+      <div class="rango-min-max"><span>0.0</span><span>1.0</span></div>
+
+      <div class="fila-switch">
+        <label class="etiqueta" for="switch-stream">Stream Response</label>
+        <input id="switch-stream" type="checkbox" class="switch" checked>
+      </div>
+
+      <label class="etiqueta">Max Tokens</label>
+      <input id="control-max-tokens" type="number" class="campo-numero" min="1" max="2048" value="512">
+
+      <div class="separador-panel"></div>
+
+      <div class="encabezado-panel">
+        <h2>Estado del Sistema</h2>
+      </div>
+
+      <div class="fila-estado">
+        <span class="etiqueta-inline">Modelo:</span>
+        <span id="indicador-estado-modelo" class="indicador-estado">Cargando...</span>
+      </div>
+
+      <label class="etiqueta">CPU</label>
+      <div class="barra-recurso-contenedor">
+        <div id="barra-cpu" class="barra-recurso-relleno"></div>
+      </div>
+      <span id="texto-cpu" class="valor-recurso">0%</span>
+
+      <label class="etiqueta">Memoria (RAM)</label>
+      <div class="barra-recurso-contenedor">
+        <div id="barra-memoria" class="barra-recurso-relleno"></div>
+      </div>
+      <span id="texto-memoria" class="valor-recurso">0 MB</span>
+    </aside>
+
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
